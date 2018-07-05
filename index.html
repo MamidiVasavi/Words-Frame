@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title> Displaying words of input string per line in a rectangular frame </title>
+	</head>
+	
+	<body>
+	
+		<p>Input String: <input type="text" id="str" placeholder="String here please..."> </input> </p> 
+	
+		<button onClick="myFrame()">Submit</button> 
+		
+		<embed id="demo" > </embed>
+		
+		<script> 
+			
+			function printFrame(arr) {
+    function fill (str, length, char) {
+      return (str.length < length) ? fill(str + char, length, char) : str;
+    }
+    
+    let size = arr.map((str) => {
+            return str.length;
+        })
+        .reduce((a, b) => {
+            return Math.max(a, b);
+        });
+    
+    let line = fill('', size + 4, '*');
+    
+    arr = arr.map((element) => {
+            return '* '+ fill(element, size, ' ') + ' *';
+        })
+    arr.unshift(line);
+    arr.push(line);
+    
+	return arr.join('\n');;
+}
+			function myFrame() {
+			var txt = document.getElementById("str").value;
+			txt1=txt.split(" "); 
+			console.log(txt1);
+			console.log(printFrame(txt1));
+			document.getElementById("demo").innerHTML = printFrame(txt1);
+		    }
+		
+		</script>
+	</body>
+	
+</html>
